@@ -1,0 +1,24 @@
+﻿@using Cint.CodingChallenge.Web.ViewModels
+@model SurveyViewModel[]
+@{
+    ArgumentNullException.ThrowIfNull(Model);
+}
+
+@if (Model.Length > 0)
+{
+    @foreach (var survey in Model)
+    {
+        <tr>
+            <td>@survey.Name</td>
+            <td>@survey.Description</td>
+            <td>@survey.IncentiveEuros</td>
+            <td>@survey.LengthMinutes</td>
+        </tr>
+    }
+}
+else
+{
+    <tr>
+        <td colspan="4">No Results"</td>
+    </tr>
+}

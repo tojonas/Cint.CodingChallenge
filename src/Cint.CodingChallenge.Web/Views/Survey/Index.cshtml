@@ -1,0 +1,55 @@
+﻿@using Cint.CodingChallenge.Web.ViewModels
+@model SurveyViewModel[]
+@{
+    ArgumentNullException.ThrowIfNull(Model);
+}
+
+<div class="card p-4 mb-3">
+
+    <div class="text-center">
+        <p>Welcome to the Cint Coding Challenge project!</p>
+    </div>
+
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="search-addon">
+            <img id="loading" class="htmx-indicator" src="/img/bars.svg" />
+        </span>
+
+        <input type="text"
+               value="@Context.Request.Query["name"]"
+               name="name"
+               id="query"
+               autocomplete="off"
+               placeholder="Search"
+               class="form-control"
+               aria-label="Search box"
+               aria-describedby="search-addon"
+               hx-get="/Survey/Search"
+               hx-target="#results"
+               hx-trigger="keyup changed delay:250ms"
+               hx-push-url="true"
+               hx-indicator="#loading">
+    </div>
+
+    <table class="table table-borderless table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Incentive</th>
+                <th>Length</th>
+            </tr>
+        </thead>
+        <tbody id="results">
+            @await Html.PartialAsync("_Surveys", Model)
+        </tbody>
+    </table>
+    <button hx-get="/Survey"
+            hx-target="#modals-here"
+            hx-trigger="click"
+            data-bs-toggle="modal"
+            data-bs-target="#modals-here"
+            class="btn btn-primary">
+        Create Survey
+    </button>
+</div>

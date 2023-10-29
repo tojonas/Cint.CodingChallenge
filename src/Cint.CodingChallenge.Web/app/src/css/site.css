@@ -1,0 +1,24 @@
+.logo {
+    color: inherit;
+    text-decoration: none;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.logo b {
+    font-weight: inherit;
+    color: #3465a4;
+}
+
+.htmx-indicator {
+    opacity: 0;
+    transition: opacity 500ms ease-in;
+}
+
+.htmx-request .htmx-indicator {
+    opacity: 1
+}
+
+.htmx-request.htmx-indicator {
+    opacity: 1
+}
